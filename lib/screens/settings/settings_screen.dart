@@ -43,6 +43,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             _buildSectionHeader("ACCOUNT"),
             _buildSettingItem(
+              context: context,
               icon: Icons.person_outline_rounded,
               title: "Profile & Storage",
               trailing: Container(
@@ -63,6 +64,7 @@ class SettingsScreen extends StatelessWidget {
               onTap: () {},
             ),
             _buildSettingItem(
+              context: context,
               icon: Icons.dark_mode_outlined,
               title: "Dark Mode",
               trailing: Switch(
@@ -75,6 +77,7 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 24),
             _buildSectionHeader("PREFERENCES"),
             _buildSettingItem(
+              context: context,
               icon: Icons.currency_exchange_rounded,
               title: "Default Currency",
               trailing: Container(
@@ -100,11 +103,13 @@ class SettingsScreen extends StatelessWidget {
             const SizedBox(height: 24),
             _buildSectionHeader("SUPPORT & SOCIAL"),
             _buildSettingItem(
+              context: context,
               icon: Icons.star_outline_rounded,
               title: "Rate the App",
               onTap: _rateApp,
             ),
             _buildSettingItem(
+              context: context,
               icon: Icons.feedback_outlined,
               title: "Share Feedback",
               onTap: () => _launchEmail(
@@ -113,6 +118,7 @@ class SettingsScreen extends StatelessWidget {
               ),
             ),
             _buildSettingItem(
+              context: context,
               icon: Icons.bug_report_outlined,
               title: "Report a Bug",
               onTap: () =>
@@ -151,6 +157,7 @@ class SettingsScreen extends StatelessWidget {
   }
 
   Widget _buildSettingItem({
+    required BuildContext context,
     required IconData icon,
     required String title,
     String? subtitle,
@@ -160,7 +167,7 @@ class SettingsScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
-        color: AppTheme.cardBackground,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(16),
       ),
       child: ListTile(

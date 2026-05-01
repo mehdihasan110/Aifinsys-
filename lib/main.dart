@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'data/command/commands.dart';
+import 'data/bloc/app_bloc.dart';
 import 'screens/main_screen.dart';
 import 'theme.dart';
 
