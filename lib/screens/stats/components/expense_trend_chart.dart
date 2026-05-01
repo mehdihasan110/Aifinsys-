@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme.dart';
 
 class ExpenseTrendChart extends StatelessWidget {
   const ExpenseTrendChart({super.key});
@@ -29,42 +28,42 @@ class ExpenseTrendChart extends StatelessWidget {
                 // Dummy x-axis labels
                 switch (value.toInt()) {
                   case 0:
-                    return const Text(
-                      '1',
+                    return Text(
+                      '${value.toInt() == 0 ? "1" : (value.toInt() == 2 ? "8" : (value.toInt() == 4 ? "15" : (value.toInt() == 6 ? "22" : "30")))}',
                       style: TextStyle(
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                       ),
                     );
                   case 2:
-                    return const Text(
+                    return Text(
                       '8',
                       style: TextStyle(
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                       ),
                     );
                   case 4:
-                    return const Text(
+                    return Text(
                       '15',
                       style: TextStyle(
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                       ),
                     );
                   case 6:
-                    return const Text(
+                    return Text(
                       '22',
                       style: TextStyle(
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                       ),
                     );
                   case 8:
-                    return const Text(
+                    return Text(
                       '30',
                       style: TextStyle(
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 10,
                       ),
                     );
@@ -96,7 +95,7 @@ class ExpenseTrendChart extends StatelessWidget {
               FlSpot(8, 4),
             ],
             isCurved: true,
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.primary,
             barWidth: 3,
             isStrokeCapRound: true,
             dotData: const FlDotData(show: false),
@@ -104,8 +103,8 @@ class ExpenseTrendChart extends StatelessWidget {
               show: true,
               gradient: LinearGradient(
                 colors: [
-                  AppTheme.primaryNavy.withValues(alpha: 0.3),
-                  AppTheme.primaryNavy.withValues(alpha: 0.0),
+                  Theme.of(context).colorScheme.primary.withValues(alpha: 0.3),
+                  Theme.of(context).colorScheme.primary.withValues(alpha: 0.0),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,

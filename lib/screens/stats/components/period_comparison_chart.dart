@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../theme.dart';
 
 class PeriodComparisonChart extends StatelessWidget {
   final double currentIncome;
@@ -24,6 +23,7 @@ class PeriodComparisonChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     // Find max value for normalization
     final maxValue = [
       currentIncome,
@@ -45,13 +45,13 @@ class PeriodComparisonChart extends StatelessWidget {
           touchTooltipData: BarTouchTooltipData(
             fitInsideHorizontally: true,
             fitInsideVertically: true,
-            getTooltipColor: (group) => AppTheme.cardBackground,
+            getTooltipColor: (group) => Theme.of(context).cardTheme.color!,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               final val = rod.toY;
               return BarTooltipItem(
                 val.toStringAsFixed(0),
                 GoogleFonts.outfit(
-                  color: AppTheme.primaryNavy,
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.bold,
                 ),
               );
@@ -66,11 +66,11 @@ class PeriodComparisonChart extends StatelessWidget {
               getTitlesWidget: (value, meta) {
                 switch (value.toInt()) {
                   case 0:
-                    return _buildLabel("Income");
+                    return _buildLabel(context, "Income");
                   case 1:
-                    return _buildLabel("Expense");
+                    return _buildLabel(context, "Expense");
                   case 2:
-                    return _buildLabel("Savings");
+                    return _buildLabel(context, "Savings");
                   default:
                     return const SizedBox();
                 }
@@ -90,26 +90,26 @@ class PeriodComparisonChart extends StatelessWidget {
         gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),
         barGroups: [
-          _buildGroup(0, currentIncome, previousIncome, AppTheme.primaryGreen),
+          _buildGroup(0, currentIncome, previousIncome, theme.colorScheme.secondary),
           _buildGroup(1, currentExpense, previousExpense, Colors.redAccent),
           _buildGroup(
             2,
             currentSavings,
             previousSavings,
-            AppTheme.accentPurple,
+            theme.colorScheme.primary,
           ),
         ],
       ),
     );
   }
 
-  Widget _buildLabel(String text) {
+  Widget _buildLabel(BuildContext context, String text) {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0),
       child: Text(
         text,
         style: GoogleFonts.outfit(
-          color: AppTheme.textSecondary,
+          color: Theme.of(context).colorScheme.onSurfaceVariant,
           fontSize: 12,
           fontWeight: FontWeight.w600,
         ),

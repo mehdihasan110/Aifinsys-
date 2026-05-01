@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../../../data/bloc/app_bloc.dart';
 import '../../../data/bloc/expense_bloc.dart';
 import '../../../data/utils/string_utils.dart';
-import '../../../theme.dart';
 
 class SpendingSummary extends StatelessWidget {
   const SpendingSummary({super.key});
@@ -55,7 +54,7 @@ class SpendingSummary extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Row(
+              Row(
                 children: [
                   Icon(
                     Icons.pie_chart_outline,
@@ -93,8 +92,8 @@ class SpendingSummary extends StatelessWidget {
               children: [
                 Text(
                   monthYear,
-                  style: const TextStyle(
-                    color: AppTheme.textSecondary,
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 1.0,
@@ -103,12 +102,12 @@ class SpendingSummary extends StatelessWidget {
                 const SizedBox(height: 16),
 
                 if (items.isEmpty)
-                  const Center(
+                  Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
+                      padding: const EdgeInsets.symmetric(vertical: 20),
                       child: Text(
                         "No spending this month",
-                        style: TextStyle(color: AppTheme.textSecondary),
+                        style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
                       ),
                     ),
                   ),
@@ -149,7 +148,7 @@ class SpendingSummary extends StatelessWidget {
               ListTile(
                 title: const Text("Show Value"),
                 trailing: !appBloc.showPercentage
-                    ? const Icon(Icons.check, color: AppTheme.accentPurple)
+                    ? Icon(Icons.check, color: Theme.of(context).colorScheme.primary)
                     : null,
                 onTap: () {
                   appBloc.showPercentage = false;
@@ -159,7 +158,7 @@ class SpendingSummary extends StatelessWidget {
               ListTile(
                 title: const Text("Show Percentage"),
                 trailing: appBloc.showPercentage
-                    ? const Icon(Icons.check, color: AppTheme.accentPurple)
+                    ? Icon(Icons.check, color: Theme.of(context).colorScheme.primary)
                     : null,
                 onTap: () {
                   appBloc.showPercentage = true;

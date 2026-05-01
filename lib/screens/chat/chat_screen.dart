@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
+import '../../data/bloc/app_bloc.dart';
 
 import '../../data/command/expense/expense_command.dart';
 import '../../data/data/expense/expense.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../theme.dart';
 
 class DateNavigator extends StatelessWidget {
   final String label;
@@ -22,15 +21,15 @@ class DateNavigator extends StatelessWidget {
       children: [
         IconButton(
           onPressed: onPrevious,
-          icon: const Icon(
+          icon: Icon(
             Icons.chevron_left_rounded,
-            color: AppTheme.textSecondary,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(
-            color: AppTheme.cardBackground,
+            color: Theme.of(context).cardTheme.color,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Text(
@@ -38,15 +37,15 @@ class DateNavigator extends StatelessWidget {
             style: GoogleFonts.outfit(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: AppTheme.primaryNavy,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ),
         IconButton(
           onPressed: onNext,
-          icon: const Icon(
+          icon: Icon(
             Icons.chevron_right_rounded,
-            color: AppTheme.textSecondary,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
           ),
         ),
       ],

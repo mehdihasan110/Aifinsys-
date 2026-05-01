@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'highlight_card.dart';
 
 import '../../../data/utils/statistics_helper.dart';
-import '../../../theme.dart';
 
 class HighlightCardsSection extends StatelessWidget {
   final StatisticsHelper stats;
@@ -24,7 +23,7 @@ class HighlightCardsSection extends StatelessWidget {
               child: HighlightCard(
                 title: "Income",
                 amount: stats.totalIncome,
-                color: AppTheme.primaryGreen,
+                color: Theme.of(context).colorScheme.secondary,
                 currency: currency,
                 icon: Icons.arrow_downward_rounded,
               ),
@@ -45,7 +44,7 @@ class HighlightCardsSection extends StatelessWidget {
         HighlightCard(
           title: "Total Savings",
           amount: stats.totalSaved,
-          color: AppTheme.accentPurple,
+          color: Theme.of(context).colorScheme.primary,
           currency: currency,
           icon: Icons.savings_outlined,
           fullWidth: true,

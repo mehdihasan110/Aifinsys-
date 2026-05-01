@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../theme.dart';
 
 class ExportScreen extends StatelessWidget {
   const ExportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: AppTheme.scaffoldBackground,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
           "Export Data",
           style: GoogleFonts.outfit(
-            color: AppTheme.primaryNavy,
+            color: theme.colorScheme.onSurface,
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: AppTheme.scaffoldBackground,
+        backgroundColor: theme.scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: AppTheme.primaryNavy,
+            color: theme.colorScheme.onSurface,
           ),
           onPressed: () => Navigator.pop(context),
         ),
@@ -35,13 +35,13 @@ class ExportScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(32),
               decoration: BoxDecoration(
-                color: AppTheme.accentPurple.withValues(alpha: 0.1),
+                color: theme.colorScheme.primary.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.file_download_rounded,
                 size: 64,
-                color: AppTheme.accentPurple,
+                color: theme.colorScheme.primary,
               ),
             ),
             const SizedBox(height: 32),
@@ -50,7 +50,7 @@ class ExportScreen extends StatelessWidget {
               style: GoogleFonts.outfit(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: AppTheme.primaryNavy,
+                color: theme.colorScheme.onSurface,
               ),
             ),
             const SizedBox(height: 12),
@@ -61,40 +61,41 @@ class ExportScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: GoogleFonts.outfit(
                   fontSize: 16,
-                  color: AppTheme.textPrimary,
+                  color: theme.colorScheme.onSurfaceVariant,
                   height: 1.5,
                 ),
               ),
             ),
             const SizedBox(height: 48),
-            _buildExportOption(Icons.picture_as_pdf_rounded, "PDF Report"),
+            _buildExportOption(context, Icons.picture_as_pdf_rounded, "PDF Report"),
             const SizedBox(height: 16),
-            _buildExportOption(Icons.table_chart_rounded, "CSV / Excel"),
+            _buildExportOption(context, Icons.table_chart_rounded, "CSV / Excel"),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildExportOption(IconData icon, String label) {
+  Widget _buildExportOption(BuildContext context, IconData icon, String label) {
+    final theme = Theme.of(context);
     return Container(
       width: 200,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       decoration: BoxDecoration(
         border: Border.all(
-          color: AppTheme.textSecondary.withValues(alpha: 0.2),
+          color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.2),
         ),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon, color: AppTheme.textSecondary, size: 20),
+          Icon(icon, color: theme.colorScheme.onSurfaceVariant, size: 20),
           const SizedBox(width: 12),
           Text(
             label,
             style: GoogleFonts.outfit(
-              color: AppTheme.textSecondary,
+              color: theme.colorScheme.onSurfaceVariant,
               fontWeight: FontWeight.w600,
             ),
           ),

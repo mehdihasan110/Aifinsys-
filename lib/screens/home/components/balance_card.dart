@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../../../data/bloc/app_bloc.dart';
 import '../../../data/bloc/expense_bloc.dart';
-import '../../../theme.dart';
 
 class BalanceCard extends StatefulWidget {
   const BalanceCard({super.key});
@@ -106,7 +105,7 @@ class _BalanceCardState extends State<BalanceCard> {
                     child: Text(
                       "No data for this period",
                       style: GoogleFonts.outfit(
-                        color: AppTheme.textSecondary,
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
                         fontSize: 12,
                       ),
                     ),
@@ -153,13 +152,20 @@ class _BalanceCardState extends State<BalanceCard> {
                               spots: spots,
                               isCurved: true,
                               curveSmoothness: 0.1,
-                              color: AppTheme.primaryGreen,
+                              color: Theme.of(context).colorScheme.secondary,
                               barWidth: 2,
                               isStrokeCapRound: true,
                               dotData: const FlDotData(show: false),
                               belowBarData: BarAreaData(
                                 show: true,
-                                gradient: AppTheme.greenGraphGradient,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Theme.of(context).colorScheme.secondary.withValues(alpha: 0.3),
+                                    Theme.of(context).colorScheme.secondary.withValues(alpha: 0.0),
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
                               ),
                             ),
                           ],
@@ -255,8 +261,8 @@ class _BalanceCardState extends State<BalanceCard> {
         const SizedBox(height: 4),
         Text(
           label,
-          style: const TextStyle(
-            color: AppTheme.textSecondary,
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
             fontSize: 10,
             fontWeight: FontWeight.w600,
             letterSpacing: 0.5,

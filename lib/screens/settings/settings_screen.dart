@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../data/bloc/app_bloc.dart';
-import '../../theme.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -41,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildSectionHeader("ACCOUNT"),
+            _buildSectionHeader(context, "ACCOUNT"),
             _buildSettingItem(
               context: context,
               icon: Icons.person_outline_rounded,
@@ -49,7 +48,7 @@ class SettingsScreen extends StatelessWidget {
               trailing: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: AppTheme.accentPurple.withValues(alpha: 0.1),
+                  color: theme.colorScheme.primary.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
@@ -57,7 +56,7 @@ class SettingsScreen extends StatelessWidget {
                   style: GoogleFonts.outfit(
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.accentPurple,
+                    color: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -70,12 +69,12 @@ class SettingsScreen extends StatelessWidget {
               trailing: Switch(
                 value: appBloc.isDarkMode,
                 onChanged: (value) => appBloc.isDarkMode = value,
-                activeColor: AppTheme.accentPurple,
+                activeColor: theme.colorScheme.primary,
               ),
               onTap: () => appBloc.isDarkMode = !appBloc.isDarkMode,
             ),
             const SizedBox(height: 24),
-            _buildSectionHeader("PREFERENCES"),
+            _buildSectionHeader(context, "PREFERENCES"),
             _buildSettingItem(
               context: context,
               icon: Icons.currency_exchange_rounded,
@@ -86,7 +85,7 @@ class SettingsScreen extends StatelessWidget {
                   vertical: 6,
                 ),
                 decoration: BoxDecoration(
-                  color: AppTheme.inputFill,
+                  color: theme.inputDecorationTheme.fillColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
@@ -101,7 +100,7 @@ class SettingsScreen extends StatelessWidget {
               onTap: () => _showCurrencyPicker(context, appBloc),
             ),
             const SizedBox(height: 24),
-            _buildSectionHeader("SUPPORT & SOCIAL"),
+            _buildSectionHeader(context, "SUPPORT & SOCIAL"),
             _buildSettingItem(
               context: context,
               icon: Icons.star_outline_rounded,
@@ -129,7 +128,7 @@ class SettingsScreen extends StatelessWidget {
               child: Text(
                 "Version ${AppBloc.kVersion}",
                 style: GoogleFonts.outfit(
-                  color: AppTheme.textSecondary,
+                  color: theme.colorScheme.onSurfaceVariant,
                   fontSize: 12,
                 ),
               ),
@@ -141,7 +140,8 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionHeader(String title) {
+  Widget _buildSectionHeader(BuildContext context, String title) {
+    final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(left: 4, bottom: 12),
       child: Text(
@@ -149,7 +149,7 @@ class SettingsScreen extends StatelessWidget {
         style: GoogleFonts.outfit(
           fontSize: 12,
           fontWeight: FontWeight.w600,
-          color: AppTheme.textSecondary,
+          color: theme.colorScheme.onSurfaceVariant,
           letterSpacing: 1.2,
         ),
       ),
@@ -164,6 +164,7 @@ class SettingsScreen extends StatelessWidget {
     Widget? trailing,
     required VoidCallback onTap,
   }) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       decoration: BoxDecoration(
@@ -186,7 +187,7 @@ class SettingsScreen extends StatelessWidget {
                 subtitle,
                 style: GoogleFonts.outfit(
                   fontSize: 12,
-                  color: AppTheme.textSecondary,
+                  color: theme.colorScheme.onSurfaceVariant,
                 ),
               )
             : null,
@@ -194,17 +195,18 @@ class SettingsScreen extends StatelessWidget {
             trailing ??
             const Icon(
               Icons.chevron_right_rounded,
-              color: AppTheme.textSecondary,
+              color: Colors.grey,
             ),
       ),
     );
   }
 
   void _showCurrencyPicker(BuildContext context, AppBloc appBloc) {
+    final theme = Theme.of(context);
     final currencies = ["₹", "\$", "€", "£", "¥", "₩", "₽"];
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppTheme.cardBackground,
+      backgroundColor: theme.cardTheme.color,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -220,7 +222,7 @@ class SettingsScreen extends StatelessWidget {
                 style: GoogleFonts.outfit(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryNavy,
+                  color: theme.colorScheme.onSurface,
                 ),
               ),
               const SizedBox(height: 16),
@@ -241,8 +243,8 @@ class SettingsScreen extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         color: isSelected
-                            ? AppTheme.accentPurple
-                            : AppTheme.inputFill,
+                            ? theme.colorScheme.primary
+                            : theme.inputDecorationTheme.fillColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Text(
@@ -252,7 +254,7 @@ class SettingsScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: isSelected
                               ? Colors.white
-                              : AppTheme.primaryNavy,
+                              : theme.colorScheme.onSurface,
                         ),
                       ),
                     ),

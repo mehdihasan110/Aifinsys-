@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../theme.dart';
 
 class PeriodSelector extends StatelessWidget {
   final String selectedPeriod;
@@ -19,7 +18,7 @@ class PeriodSelector extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
-        color: AppTheme.inputFill,
+        color: Theme.of(context).inputDecorationTheme.fillColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
@@ -34,7 +33,7 @@ class PeriodSelector extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? AppTheme.cardBackground
+                      ? Theme.of(context).cardTheme.color
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: isSelected
@@ -53,8 +52,8 @@ class PeriodSelector extends StatelessWidget {
                   style: GoogleFonts.outfit(
                     fontWeight: FontWeight.w600,
                     color: isSelected
-                        ? AppTheme.primaryNavy
-                        : AppTheme.textSecondary,
+                        ? Theme.of(context).colorScheme.onSurface
+                        : Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                 ),
               ),

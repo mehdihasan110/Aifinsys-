@@ -6,7 +6,6 @@ import '../../../data/bloc/app_bloc.dart';
 import '../../settings/settings_screen.dart';
 import '../../transactions/transactions_screen.dart';
 
-import '../../../theme.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -49,16 +48,16 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                       color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
-                  Text(
-                    appBloc.isGuestUser
-                        ? "Sign in to sync data ->"
-                        : "Data is synced",
-                    style: GoogleFonts.outfit(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500,
-                      color: AppTheme.accentPurple,
+                    Text(
+                      appBloc.isGuestUser
+                          ? "Sign in to sync data ->"
+                          : "Data is synced",
+                      style: GoogleFonts.outfit(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
                     ),
-                  ),
                 ],
               ),
             ],

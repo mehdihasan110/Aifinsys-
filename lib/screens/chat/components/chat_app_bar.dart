@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../theme.dart';
 
 /// A chat-style app bar that shows the app avatar, name, and status.
 /// Uses SliverAppBar for scroll-aware behavior.
@@ -49,13 +48,13 @@ class _BackButton extends StatelessWidget {
         icon: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: AppTheme.primaryNavy.withValues(alpha: 0.05),
+            color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back_ios_new_rounded,
             size: 18,
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
       ),
@@ -81,13 +80,13 @@ class _ChatHeader extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppTheme.primaryGreen.withValues(alpha: 0.2),
-                AppTheme.primaryGreen.withValues(alpha: 0.1),
+                Theme.of(context).colorScheme.secondary.withValues(alpha: 0.2),
+                Theme.of(context).colorScheme.secondary.withValues(alpha: 0.1),
               ],
             ),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: AppTheme.primaryGreen.withValues(alpha: 0.3),
+              color: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.3),
               width: 1.5,
             ),
           ),
@@ -96,9 +95,9 @@ class _ChatHeader extends StatelessWidget {
             child: Image.asset(
               'logo-big.png',
               fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) => const Icon(
+              errorBuilder: (context, error, stackTrace) => Icon(
                 Icons.account_balance_wallet_rounded,
-                color: AppTheme.primaryGreen,
+                color: Theme.of(context).colorScheme.secondary,
                 size: 22,
               ),
             ),
@@ -110,10 +109,10 @@ class _ChatHeader extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Clean Expense',
               style: TextStyle(
-                color: AppTheme.primaryNavy,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: 16,
                 fontWeight: FontWeight.w700,
                 letterSpacing: -0.3,
@@ -125,8 +124,8 @@ class _ChatHeader extends StatelessWidget {
                 Container(
                   width: 8,
                   height: 8,
-                  decoration: const BoxDecoration(
-                    color: AppTheme.primaryGreen,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -134,7 +133,7 @@ class _ChatHeader extends StatelessWidget {
                 Text(
                   'Active now',
                   style: TextStyle(
-                    color: AppTheme.textSecondary.withValues(alpha: 0.8),
+                    color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.8),
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
                   ),
@@ -161,13 +160,13 @@ class _SettingsButton extends StatelessWidget {
       icon: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: AppTheme.primaryNavy.withValues(alpha: 0.05),
+          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Icon(
+        child: Icon(
           Icons.tune_rounded,
           size: 20,
-          color: AppTheme.primaryNavy,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
       ),
     );

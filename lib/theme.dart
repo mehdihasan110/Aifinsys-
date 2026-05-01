@@ -91,10 +91,12 @@ class AppTheme {
       colorScheme: const ColorScheme.light(
         primary: primaryNavy,
         secondary: primaryGreen,
-        surface: cardBackground,
+        tertiary: accentPurple,
+        surface: Colors.white,
         error: dangerRed,
         onPrimary: textWhite,
         onSurface: textPrimary,
+        onSurfaceVariant: textSecondary,
       ),
 
       // Typography (Using Inter to match the clean look)
@@ -186,12 +188,14 @@ class AppTheme {
 
       // Color Scheme (Material 3 definition)
       colorScheme: const ColorScheme.dark(
-        primary: primaryNavy,
+        primary: accentPurple,
         secondary: primaryGreen,
+        tertiary: accentBlue,
         surface: darkCardBackground,
         error: dangerRed,
         onPrimary: textWhite,
         onSurface: darkTextPrimary,
+        onSurfaceVariant: darkTextSecondary,
       ),
 
       // Typography

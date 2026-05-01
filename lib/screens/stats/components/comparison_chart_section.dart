@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../data/utils/statistics_helper.dart';
-import '../../../theme.dart';
 import 'expense_line_chart.dart';
 import 'period_comparison_chart.dart';
 import 'chart_toggle_btn.dart';
@@ -74,14 +73,16 @@ class ComparisonChartSection extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     _buildLegendDot(
+                      context,
                       chartIndex == 0
                           ? Colors.redAccent
-                          : AppTheme.primaryGreen,
+                          : Theme.of(context).colorScheme.secondary,
                       "Current",
                     ),
                     const SizedBox(width: 12),
                     _buildLegendDot(
-                      AppTheme.textSecondary.withValues(alpha: 0.3),
+                      context,
+                      Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
                       "Previous",
                     ),
                   ],
@@ -114,7 +115,7 @@ class ComparisonChartSection extends StatelessWidget {
     );
   }
 
-  Widget _buildLegendDot(Color color, String label) {
+  Widget _buildLegendDot(BuildContext context, Color color, String label) {
     return Row(
       children: [
         Container(

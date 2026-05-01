@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../data/bloc/app_bloc.dart';
 import '../../data/bloc/expense_bloc.dart';
 import '../../data/data/expense/expense.dart';
-import '../../theme.dart';
 
 class TransactionsScreen extends StatefulWidget {
   const TransactionsScreen({super.key});
@@ -143,7 +142,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: AppTheme.accentPurple.withValues(alpha: 0.1),
+                      color: Theme.of(context).colorScheme.tertiary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Row(
@@ -153,17 +152,17 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                           style: GoogleFonts.outfit(
                             fontSize: 12,
                             fontWeight: FontWeight.w600,
-                            color: AppTheme.accentPurple,
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
                         ),
                         const SizedBox(width: 8),
                         GestureDetector(
                           onTap: () =>
                               setState(() => _selectedDateRange = null),
-                          child: const Icon(
+                          child: Icon(
                             Icons.close_rounded,
                             size: 14,
-                            color: AppTheme.accentPurple,
+                            color: Theme.of(context).colorScheme.tertiary,
                           ),
                         ),
                       ],
@@ -241,7 +240,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             boxShadow: [
               if (isSelected)
                 BoxShadow(
-                  color: AppTheme.primaryNavy.withValues(alpha: 0.2),
+                  color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.2),
                   blurRadius: 8,
                   offset: const Offset(0, 4),
                 ),
@@ -261,6 +260,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
   }
 
   Widget _buildTransactionItem(ExpenseData e, NumberFormat format) {
+    final theme = Theme.of(context);
     final isIncome = e.type == TransactionType.incoming;
     final isInvestment = e.type == TransactionType.invested;
 
@@ -287,10 +287,10 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             decoration: BoxDecoration(
               color:
                   (isIncome
-                          ? AppTheme.primaryGreen
+                          ? theme.colorScheme.secondary
                           : (isInvestment
-                                ? AppTheme.accentPurple
-                                : AppTheme.textSecondary))
+                                ? theme.colorScheme.tertiary
+                                : theme.colorScheme.onSurfaceVariant))
                       .withValues(alpha: 0.12),
               shape: BoxShape.circle,
             ),
@@ -301,10 +301,10 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                         ? Icons.trending_up_rounded
                         : Icons.remove_rounded),
               color: isIncome
-                  ? AppTheme.primaryGreen
+                  ? theme.colorScheme.secondary
                   : (isInvestment
-                        ? AppTheme.accentPurple
-                        : Theme.of(context).colorScheme.onSurface),
+                        ? theme.colorScheme.tertiary
+                        : theme.colorScheme.onSurface),
               size: 20,
             ),
           ),
@@ -348,7 +348,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                   color: isIncome
-                      ? AppTheme.primaryGreen
+                      ? theme.colorScheme.secondary
                       : Theme.of(context).colorScheme.onSurface,
                 ),
               ),
@@ -364,16 +364,16 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(
+          Icon(
             Icons.receipt_long_rounded,
             size: 64,
-            color: AppTheme.inputFill,
+            color: Theme.of(context).inputDecorationTheme.fillColor,
           ),
           const SizedBox(height: 16),
           Text(
             "No transactions found",
             style: GoogleFonts.outfit(
-              color: AppTheme.textSecondary,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontSize: 16,
             ),
           ),
@@ -383,6 +383,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
   }
 
   void _showDateRangePicker() async {
+    final theme = Theme.of(context);
     final expenses = context.read<ExpenseBloc>().expenses;
     final firstDate = expenses.isEmpty
         ? DateTime.now()
@@ -396,10 +397,10 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(
-              primary: AppTheme.primaryNavy,
-              onPrimary: Colors.white,
-              onSurface: AppTheme.primaryNavy,
+            colorScheme: theme.colorScheme.copyWith(
+              primary: theme.colorScheme.primary,
+              onPrimary: theme.colorScheme.onPrimary,
+              onSurface: theme.colorScheme.onSurface,
             ),
           ),
           child: child!,

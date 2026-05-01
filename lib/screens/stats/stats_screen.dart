@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import '../../data/bloc/app_bloc.dart';
 import '../../data/bloc/expense_bloc.dart';
 import '../../data/utils/statistics_helper.dart';
-import '../../theme.dart';
 import 'components/category_breakdown.dart';
 
 import 'components/period_selector.dart';

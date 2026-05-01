@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../data/bloc/app_bloc.dart';
 import '../../data/bloc/expense_bloc.dart';
 import '../../data/command/commands.dart';
 import '../../data/data/expense/expense.dart';
-import '../../theme.dart';
 
 class ManageCategoryScreen extends StatelessWidget {
   const ManageCategoryScreen({super.key});
@@ -12,15 +12,15 @@ class ManageCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.scaffoldBackground,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text("Manage Categories"),
         centerTitle: true,
-        backgroundColor: AppTheme.scaffoldBackground,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, size: 20),
-          color: AppTheme.primaryNavy,
+          color: Theme.of(context).colorScheme.onSurface,
           onPressed: () => Navigator.pop(context),
         ),
       ),
@@ -30,10 +30,10 @@ class ManageCategoryScreen extends StatelessWidget {
           final hasCategories = grouped.values.any((list) => list.isNotEmpty);
 
           if (!hasCategories) {
-            return const Center(
+            return Center(
               child: Text(
                 "No categories used yet.",
-                style: TextStyle(color: AppTheme.textSecondary, fontSize: 16),
+                style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 16),
               ),
             );
           }
@@ -87,8 +87,8 @@ class ManageCategoryScreen extends StatelessWidget {
           ),
           child: Text(
             title.toUpperCase(),
-            style: const TextStyle(
-              color: AppTheme.textSecondary,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
               fontSize: 12,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
@@ -111,7 +111,6 @@ class ManageCategoryScreen extends StatelessWidget {
               ),
               const Divider(
                 height: 1,
-                color: AppTheme.dividerColor,
                 indent: 16,
                 endIndent: 16,
               ),
@@ -125,6 +124,7 @@ class ManageCategoryScreen extends StatelessWidget {
   void _showOptionsBottomSheet(BuildContext context, String category) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Theme.of(context).cardTheme.color,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -143,9 +143,9 @@ class ManageCategoryScreen extends StatelessWidget {
                 ),
               ),
               ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.edit_outlined,
-                  color: AppTheme.primaryNavy,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
                 title: const Text("Rename Category"),
                 onTap: () {
@@ -154,14 +154,12 @@ class ManageCategoryScreen extends StatelessWidget {
                 },
               ),
               ListTile(
-                leading: const Icon(
+                leading: Icon(
                   Icons.delete_outline,
-                  color: AppTheme.dangerRed,
+                  color: Theme.of(context).colorScheme.error,
                 ),
-                title: const Text(
-                  "Delete Category",
-                  style: TextStyle(color: AppTheme.dangerRed),
-                ),
+                title: const Text("Delete Category"),
+                titleTextStyle: TextStyle(color: Theme.of(context).colorScheme.error),
                 onTap: () {
                   Navigator.pop(context); // Close options
                   _showDeleteBottomSheet(context, category);
@@ -180,6 +178,7 @@ class ManageCategoryScreen extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      backgroundColor: Theme.of(context).cardTheme.color,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -195,12 +194,12 @@ class ManageCategoryScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
+              Text(
                 "Rename Category",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryNavy,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -216,6 +215,7 @@ class ManageCategoryScreen extends StatelessWidget {
               const SizedBox(height: 24),
               ElevatedButton(
                 onPressed: () {
+                  final appBloc = context.read<AppBloc>();
                   final newName = controller.text.trim().toLowerCase();
                   if (newName.isNotEmpty && newName != currentName) {
                     BaseAppCommand.blocExpense.renameCategory(
@@ -238,7 +238,8 @@ class ManageCategoryScreen extends StatelessWidget {
   void _showDeleteBottomSheet(BuildContext context, String categoryName) {
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(
+      backgroundColor: Theme.of(context).cardTheme.color,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
@@ -250,18 +251,18 @@ class ManageCategoryScreen extends StatelessWidget {
             children: [
               Text(
                 "Delete '#$categoryName'?",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
-                  color: AppTheme.primaryNavy,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 12),
-              const Text(
+              Text(
                 "Do you want to delete all transactions associated with this category, or just mark them as deleted?",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: AppTheme.textSecondary, fontSize: 14),
+                style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 14),
               ),
               const SizedBox(height: 32),
 
@@ -297,7 +298,7 @@ class ManageCategoryScreen extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.dangerRed,
+                  backgroundColor: Theme.of(context).colorScheme.error,
                   foregroundColor: Colors.white,
                   elevation: 0,
                 ),
@@ -309,9 +310,9 @@ class ManageCategoryScreen extends StatelessWidget {
               // Cancel
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text(
+                child: Text(
                   "Cancel",
-                  style: TextStyle(color: AppTheme.textSecondary),
+                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
                 ),
               ),
             ],
@@ -338,23 +339,23 @@ class _CategoryItem extends StatelessWidget {
     final displayCategory = "#${category.toLowerCase()}";
 
     return Container(
-      color: Colors.white,
+      color: Theme.of(context).cardTheme.color,
       child: ListTile(
         onTap: onTap,
         contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
         title: Text(
           displayCategory,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.w600,
             fontSize: 16,
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         subtitle: Text(
           "$count transactions",
-          style: const TextStyle(color: AppTheme.textSecondary, fontSize: 13),
+          style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 13),
         ),
-        trailing: const Icon(Icons.more_horiz, color: AppTheme.textSecondary),
+        trailing: Icon(Icons.more_horiz, color: Theme.of(context).colorScheme.onSurfaceVariant),
       ),
     );
   }

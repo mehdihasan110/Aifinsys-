@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../data/utils/statistics_helper.dart';
 import '../../../data/utils/string_utils.dart';
-import '../../../theme.dart';
 import 'analysis_tile.dart';
 
 class DeepAnalysisSection extends StatelessWidget {

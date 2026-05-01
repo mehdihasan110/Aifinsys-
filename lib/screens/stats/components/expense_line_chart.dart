@@ -1,7 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../../theme.dart';
 
 class ExpenseLineChart extends StatelessWidget {
   final List<double> currentData;
@@ -30,14 +29,14 @@ class ExpenseLineChart extends StatelessWidget {
         lineTouchData: LineTouchData(
           handleBuiltInTouches: true,
           touchTooltipData: LineTouchTooltipData(
-            getTooltipColor: (spot) => AppTheme.cardBackground,
+            getTooltipColor: (spot) => Theme.of(context).cardTheme.color!,
             getTooltipItems: (List<LineBarSpot> touchedBarSpots) {
               return touchedBarSpots.map((barSpot) {
                 final flSpot = barSpot;
                 return LineTooltipItem(
                   flSpot.y.toStringAsFixed(0),
-                  const TextStyle(
-                    color: AppTheme.primaryNavy,
+                  TextStyle(
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.bold,
                   ),
                 );
@@ -68,7 +67,7 @@ class ExpenseLineChart extends StatelessWidget {
               return FlSpot(e.key.toDouble(), e.value);
             }).toList(),
             isCurved: true,
-            color: AppTheme.textSecondary.withValues(alpha: 0.3),
+            color: Theme.of(context).colorScheme.onSurfaceVariant.withValues(alpha: 0.3),
             barWidth: 2,
             isStrokeCapRound: true,
             dotData: const FlDotData(show: false),

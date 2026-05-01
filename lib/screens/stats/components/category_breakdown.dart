@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../theme.dart';
 import '../../../data/utils/statistics_helper.dart';
 import '../../../data/utils/string_utils.dart';
 
@@ -62,7 +61,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
                   child: Text(
                     "Clear Selection",
                     style: GoogleFonts.outfit(
-                      color: AppTheme.accentBlue,
+                      color: Theme.of(context).colorScheme.tertiary,
                       fontWeight: FontWeight.w600,
                       fontSize: 12,
                     ),
@@ -240,7 +239,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
                     "${(stat.percent * 100).toStringAsFixed(1)}%",
                     style: GoogleFonts.outfit(
                       fontSize: 12,
-                      color: AppTheme.textSecondary,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -282,7 +281,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
   Color _getColor(int index) {
     final colors = [
       Theme.of(context).colorScheme.primary,
-      AppTheme.primaryGreen,
+      Theme.of(context).colorScheme.secondary,
       Colors.redAccent,
       Colors.orangeAccent,
       Colors.purpleAccent,
