@@ -31,13 +31,8 @@ We have exciting features planned for the future:
 - [ ] **Custom Themes**: Create and share your own chat themes.
 - [ ] **Darker Logo**: A sleek new look.
 
-## Contributing 🤝
-Contributions are welcome! If you find any bugs or have feature requests, please file an issue.
-
 ## About
 Developed by **Mehdi Hasan**.
 
 ## License
 Copyright © 2026 **Mehdi Hasan**. All Rights Reserved.
-
-This project is licensed for personal and educational use only. You are **not allowed** to redistribute, resell, or upload this app to any app store (Google Play, App Store, etc.) without explicit permission.
