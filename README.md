@@ -1,0 +1,43 @@
+# Clean Expense Manager
+
+![Cover](/assets/cover.png)
+
+A beautiful, chat-based expense manager app built by **Mehdi Hasan**.
+
+## Features
+- **Smart Chat Interface**: Add expenses naturally like `#Food 200` or `Cab 500`.
+- **Clean Dashboard**: Visualize your Balance, Incoming, Outgoing, and Investments.
+- **Detailed Stats**: Breakdown of spending by category using interactive charts.
+- **Offline First**: Fast and private with local storage using Hive.
+- **Dark Mode**: Beautiful midnight theme support.
+
+## Getting Started
+
+1. Clone the repo
+2. Run `flutter pub get`
+3. Run `dart run build_runner build`
+4. Run `flutter run`
+
+## Roadmap 🚀
+We have exciting features planned for the future:
+- [ ] **Cloud Sync**: Sign in to save and sync expenses across devices.
+- [ ] **Edit/Delete Expenses**: Manage your records more effectively.
+- [ ] **Export Data**: Export to PDF, CSV, and Excel.
+- [ ] **AI Integration**:
+  - [ ] Ask AI: "Where am I spending the most?"
+  - [ ] Multi-Expense Entry: Add multiple expenses in one go.
+  - [ ] Dynamic Stats UI: AI-powered insights.
+- [ ] **UPI Scanner**: Scan QR, select app, and auto-log expense.
+- [ ] **Custom Themes**: Create and share your own chat themes.
+- [ ] **Darker Logo**: A sleek new look.
+
+## Contributing 🤝
+Contributions are welcome! If you find any bugs or have feature requests, please file an issue.
+
+## About
+Developed by **Mehdi Hasan**.
+
+## License
+Copyright © 2026 **Mehdi Hasan**. All Rights Reserved.
+
+This project is licensed for personal and educational use only. You are **not allowed** to redistribute, resell, or upload this app to any app store (Google Play, App Store, etc.) without explicit permission.
