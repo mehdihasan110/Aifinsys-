@@ -32,10 +32,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = context.watch<AppBloc>().isDarkMode;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Clean Expense',
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: isDarkMode ? ThemeMode.dark : ThemeMode.light,
       home: const _AppBootstrapper(),
     );
   }

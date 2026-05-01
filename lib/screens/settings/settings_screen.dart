@@ -14,22 +14,24 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appBloc = context.watch<AppBloc>();
 
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: AppTheme.scaffoldBackground,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppTheme.scaffoldBackground,
+        backgroundColor: theme.scaffoldBackgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: AppTheme.primaryNavy,
+            color: theme.colorScheme.onSurface,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           "Settings",
           style: GoogleFonts.outfit(
-            color: AppTheme.primaryNavy,
+            color: theme.colorScheme.onSurface,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -60,6 +62,16 @@ class SettingsScreen extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            _buildSettingItem(
+              icon: Icons.dark_mode_outlined,
+              title: "Dark Mode",
+              trailing: Switch(
+                value: appBloc.isDarkMode,
+                onChanged: (value) => appBloc.isDarkMode = value,
+                activeColor: AppTheme.accentPurple,
+              ),
+              onTap: () => appBloc.isDarkMode = !appBloc.isDarkMode,
+            ),
             const SizedBox(height: 24),
             _buildSectionHeader("PREFERENCES"),
             _buildSettingItem(
@@ -79,7 +91,7 @@ class SettingsScreen extends StatelessWidget {
                   style: GoogleFonts.outfit(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
-                    color: AppTheme.primaryNavy,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
@@ -154,12 +166,12 @@ class SettingsScreen extends StatelessWidget {
       child: ListTile(
         onTap: onTap,
         shape: RoundedRectangleFunctions.smooth(16),
-        leading: Icon(icon, color: AppTheme.primaryNavy),
+        leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
         title: Text(
           title,
           style: GoogleFonts.outfit(
             fontWeight: FontWeight.w500,
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         subtitle: subtitle != null

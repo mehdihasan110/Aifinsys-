@@ -79,6 +79,15 @@ class AppBloc extends AbstractBloc {
     notifyListeners();
   }
 
+  late bool _isDarkMode = _hive.getIsDarkMode;
+  bool get isDarkMode => _isDarkMode;
+
+  set isDarkMode(bool value) {
+    _isDarkMode = value;
+    _hive.setIsDarkMode(value);
+    notifyListeners();
+  }
+
   String _getDefaultCurrency() {
     try {
       // Get the default locale's currency symbol

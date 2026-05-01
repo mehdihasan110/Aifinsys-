@@ -31,6 +31,9 @@ extension AppHiveService on HiveService {
   bool get getShowPercentage => boolBox.get('showPercentage') ?? false;
   Future<void> setShowPercentage(bool value) =>
       boolBox.put('showPercentage', value);
+
+  bool get getIsDarkMode => boolBox.get('isDarkMode') ?? false;
+  Future<void> setIsDarkMode(bool value) => boolBox.put('isDarkMode', value);
 }
 
 /// Extension methods for expense data class

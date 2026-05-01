@@ -46,6 +46,14 @@ class AppTheme {
   static const Color tagBackground = Color(0xFFEAEBF0); // Cool light grey
   static const Color tagText = Color(0xFF7D8294); // Muted slate grey
 
+  // Dark Mode Colors
+  static const Color darkBackground = Color(0xFF161823);
+  static const Color darkCardBackground = Color(0xFF222533);
+  static const Color darkInputFill = Color(0xFF2D3142);
+  static const Color darkTextPrimary = Color(0xFFFFFFFF);
+  static const Color darkTextSecondary = Color(0xFFA0A5B1);
+  static const Color darkDividerColor = Color(0xFF32364D);
+
   // Gradients (for that Graph)
   static const LinearGradient greenGraphGradient = LinearGradient(
     begin: Alignment.topCenter,
@@ -165,6 +173,102 @@ class AppTheme {
 
       // Icon Theme
       iconTheme: const IconThemeData(color: textPrimary, size: 24),
+    );
+  }
+
+  static ThemeData get darkTheme {
+    return ThemeData(
+      useMaterial3: true,
+
+      // Base Colors
+      scaffoldBackgroundColor: darkBackground,
+      primaryColor: primaryNavy,
+
+      // Color Scheme (Material 3 definition)
+      colorScheme: const ColorScheme.dark(
+        primary: primaryNavy,
+        secondary: primaryGreen,
+        surface: darkCardBackground,
+        error: dangerRed,
+        onPrimary: textWhite,
+        onSurface: darkTextPrimary,
+      ),
+
+      // Typography
+      textTheme: GoogleFonts.interTextTheme().apply(
+        bodyColor: darkTextPrimary,
+        displayColor: darkTextPrimary,
+      ),
+
+      // AppBar Theme
+      appBarTheme: const AppBarTheme(
+        backgroundColor: darkBackground,
+        elevation: 0,
+        centerTitle: false,
+        iconTheme: IconThemeData(color: darkTextPrimary),
+        titleTextStyle: TextStyle(
+          color: darkTextPrimary,
+          fontSize: 20,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+
+      // Card Theme
+      cardTheme: CardThemeData(
+        color: darkCardBackground,
+        elevation: 0,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: const BorderSide(color: Colors.transparent),
+        ),
+      ),
+
+      // Input Decoration
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: darkInputFill,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 14,
+        ),
+        hintStyle: const TextStyle(color: darkTextSecondary),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: accentPurple, width: 1),
+        ),
+      ),
+
+      // Button Themes
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: accentPurple,
+          foregroundColor: textWhite,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+        ),
+      ),
+
+      // Floating Action Button
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: accentPurple,
+        foregroundColor: textWhite,
+      ),
+
+      // Icon Theme
+      iconTheme: const IconThemeData(color: darkTextPrimary, size: 24),
     );
   }
 }
