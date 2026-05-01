@@ -91,8 +91,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final isAppDarkMode = context.watch<AppBloc>().isDarkMode;
+
     return ChangeNotifierProvider(
-      create: (_) => ChatThemeProvider(),
+      create: (_) => ChatThemeProvider(isAppDarkMode),
       child: Consumer<ChatThemeProvider>(
         builder: (context, themeProvider, _) {
           final theme = themeProvider.theme;

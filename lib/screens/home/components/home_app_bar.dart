@@ -17,7 +17,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
     return AppBar(
       toolbarHeight: kToolbarHeight + 16,
-      backgroundColor: AppTheme.scaffoldBackground,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       titleSpacing: 16,
       title: InkWell(
@@ -31,9 +31,9 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Row(
             children: [
               // Circle Avatar
-              const CircleAvatar(
-                backgroundColor: AppTheme.inputFill,
-                child: Icon(Icons.person, color: AppTheme.textSecondary),
+              CircleAvatar(
+                backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+                child: Icon(Icons.person, color: Theme.of(context).colorScheme.secondary),
               ),
               const SizedBox(width: 12),
 
@@ -46,7 +46,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                     style: GoogleFonts.outfit(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: AppTheme.primaryNavy,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   Text(
@@ -73,7 +73,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             MaterialPageRoute(builder: (context) => const TransactionsScreen()),
           ),
           icon: const Icon(Icons.receipt_long_rounded),
-          color: AppTheme.primaryNavy,
+          color: Theme.of(context).colorScheme.onSurface,
         ),
 
         const SizedBox(width: 8),

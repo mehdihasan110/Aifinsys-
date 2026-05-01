@@ -29,7 +29,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
-          color: AppTheme.cardBackground,
+          color: Theme.of(context).cardTheme.color,
           borderRadius: BorderRadius.circular(24),
         ),
         child: const Center(child: Text("No expenses for this period")),
@@ -39,7 +39,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: AppTheme.cardBackground,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -48,12 +48,12 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 "Category Distribution",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
-                  color: AppTheme.primaryNavy,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
               ),
               if (_touchedIndex != -1)
@@ -123,11 +123,11 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
                 margin: const EdgeInsets.only(bottom: 12),
                 padding: EdgeInsets.all(isSelected ? 12 : 0),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppTheme.inputFill : Colors.transparent,
+                  color: isSelected ? Theme.of(context).inputDecorationTheme.fillColor : Colors.transparent,
                   borderRadius: BorderRadius.circular(16),
                   border: isSelected
                       ? Border.all(
-                          color: AppTheme.primaryNavy.withValues(alpha: 0.1),
+                          color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.1),
                         )
                       : null,
                 ),
@@ -191,7 +191,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
                       StringUtils.titleCase(stat.category),
                       style: GoogleFonts.outfit(
                         fontWeight: FontWeight.w600,
-                        color: AppTheme.primaryNavy,
+                        color: Theme.of(context).colorScheme.onSurface,
                         fontSize: 14,
                       ),
                     ),
@@ -233,7 +233,7 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
                     style: GoogleFonts.outfit(
                       fontWeight: FontWeight.bold,
                       fontSize: 14,
-                      color: AppTheme.primaryNavy,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   Text(
@@ -280,8 +280,8 @@ class _CategoryBreakdownState extends State<CategoryBreakdown> {
   }
 
   Color _getColor(int index) {
-    const colors = [
-      AppTheme.primaryNavy,
+    final colors = [
+      Theme.of(context).colorScheme.primary,
       AppTheme.primaryGreen,
       Colors.redAccent,
       Colors.orangeAccent,

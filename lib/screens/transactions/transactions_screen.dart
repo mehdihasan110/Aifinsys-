@@ -54,22 +54,22 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     final monthKeys = groupedExpenses.keys.toList();
 
     return Scaffold(
-      backgroundColor: AppTheme.scaffoldBackground,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: AppTheme.scaffoldBackground,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         centerTitle: false,
         leading: IconButton(
-          icon: const Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
           "Transactions",
           style: GoogleFonts.outfit(
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -79,8 +79,8 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             icon: Icon(
               Icons.calendar_month_rounded,
               color: _selectedDateRange != null
-                  ? AppTheme.accentPurple
-                  : AppTheme.primaryNavy,
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.onSurface,
             ),
             onPressed: _showDateRangePicker,
           ),
@@ -94,21 +94,21 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Container(
               decoration: BoxDecoration(
-                color: AppTheme.inputFill,
+                color: Theme.of(context).inputDecorationTheme.fillColor,
                 borderRadius: BorderRadius.circular(16),
               ),
               child: TextField(
                 onChanged: (v) => setState(() => _searchQuery = v),
-                style: GoogleFonts.outfit(color: AppTheme.primaryNavy),
+                style: GoogleFonts.outfit(color: Theme.of(context).colorScheme.onSurface),
                 decoration: InputDecoration(
                   hintText: "Search transactions...",
                   hintStyle: GoogleFonts.outfit(
-                    color: AppTheme.primaryNavy,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 14,
                   ),
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.search_rounded,
-                    color: AppTheme.primaryNavy,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     size: 20,
                   ),
                   border: InputBorder.none,
@@ -199,7 +199,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                                   style: GoogleFonts.outfit(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
-                                    color: AppTheme.primaryNavy,
+                                    color: Theme.of(context).colorScheme.onSurface,
                                     letterSpacing: 0.5,
                                   ),
                                 ),
@@ -207,7 +207,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                                   "${monthExpenses.length} transactions",
                                   style: GoogleFonts.outfit(
                                     fontSize: 12,
-                                    color: AppTheme.textSecondary,
+                                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
@@ -236,7 +236,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           decoration: BoxDecoration(
-            color: isSelected ? AppTheme.primaryNavy : AppTheme.cardBackground,
+            color: isSelected ? Theme.of(context).colorScheme.primary : Theme.of(context).cardTheme.color,
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               if (isSelected)
@@ -250,7 +250,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
           child: Text(
             label,
             style: GoogleFonts.outfit(
-              color: isSelected ? Colors.white : AppTheme.textSecondary,
+              color: isSelected ? Theme.of(context).colorScheme.onPrimary : Theme.of(context).colorScheme.onSurfaceVariant,
               fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               fontSize: 14,
             ),
@@ -268,7 +268,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.cardBackground,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -304,7 +304,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   ? AppTheme.primaryGreen
                   : (isInvestment
                         ? AppTheme.accentPurple
-                        : AppTheme.primaryNavy),
+                        : Theme.of(context).colorScheme.onSurface),
               size: 20,
             ),
           ),
@@ -322,7 +322,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   style: GoogleFonts.outfit(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                    color: AppTheme.primaryNavy,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -330,7 +330,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   "${DateFormat('dd MMM yyyy').format(e.date)} • ${e.category}",
                   style: GoogleFonts.outfit(
                     fontSize: 12,
-                    color: AppTheme.textSecondary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -349,7 +349,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   fontSize: 16,
                   color: isIncome
                       ? AppTheme.primaryGreen
-                      : AppTheme.primaryNavy,
+                      : Theme.of(context).colorScheme.onSurface,
                 ),
               ),
             ],

@@ -60,13 +60,13 @@ class SpendingSummary extends StatelessWidget {
                   Icon(
                     Icons.pie_chart_outline,
                     size: 20,
-                    color: AppTheme.textSecondary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                   SizedBox(width: 8),
                   Text(
                     "Spending Summary",
                     style: TextStyle(
-                      color: AppTheme.primaryNavy,
+                      color: Theme.of(context).colorScheme.onSurface,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -75,7 +75,7 @@ class SpendingSummary extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () => _showOptions(context, appBloc),
-                icon: const Icon(Icons.more_horiz, color: AppTheme.primaryNavy),
+                icon: Icon(Icons.more_horiz, color: Theme.of(context).colorScheme.onSurface),
               ),
             ],
           ),
@@ -85,7 +85,7 @@ class SpendingSummary extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: AppTheme.cardBackground,
+              color: Theme.of(context).cardTheme.color,
               borderRadius: BorderRadius.circular(24),
             ),
             child: Column(
@@ -136,7 +136,7 @@ class SpendingSummary extends StatelessWidget {
   void _showOptions(BuildContext context, AppBloc appBloc) {
     showModalBottomSheet(
       context: context,
-      backgroundColor: AppTheme.cardBackground,
+      backgroundColor: Theme.of(context).cardTheme.color,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
@@ -203,7 +203,7 @@ class SpendingSummary extends StatelessWidget {
                       // Min width to hold text if needed
                       height: 36,
                       decoration: BoxDecoration(
-                        color: AppTheme.inputFill, // Light grey from theme
+                        color: Theme.of(context).inputDecorationTheme.fillColor, // Responsive fill
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
@@ -215,8 +215,8 @@ class SpendingSummary extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         StringUtils.titleCase(label),
-                        style: const TextStyle(
-                          color: AppTheme.primaryNavy,
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.onSurface,
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                         ),
@@ -233,8 +233,8 @@ class SpendingSummary extends StatelessWidget {
                 showPercentage
                     ? "${(percent * 100).toStringAsFixed(0)}%"
                     : "-${currencyFormat.format(amount)}",
-                style: const TextStyle(
-                  color: AppTheme.primaryNavy,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSurface,
                   fontWeight: FontWeight.w500,
                   fontSize: 14,
                 ),

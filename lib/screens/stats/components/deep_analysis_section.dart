@@ -26,7 +26,7 @@ class DeepAnalysisSection extends StatelessWidget {
           style: GoogleFonts.outfit(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
           ),
         ),
         const SizedBox(height: 16),

@@ -29,7 +29,7 @@ class HighlightCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: fullWidth
             ? color.withValues(alpha: 0.1)
-            : AppTheme.cardBackground,
+            : Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(20),
         border: fullWidth
             ? Border.all(color: color.withValues(alpha: 0.3))
@@ -68,7 +68,7 @@ class HighlightCard extends StatelessWidget {
               style: GoogleFonts.outfit(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: AppTheme.textSecondary,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
               ),
             ),
           if (!fullWidth) const SizedBox(height: 4),
@@ -77,7 +77,7 @@ class HighlightCard extends StatelessWidget {
             style: GoogleFonts.outfit(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: AppTheme.primaryNavy,
+              color: Theme.of(context).colorScheme.onSurface,
             ),
           ),
         ],

@@ -25,7 +25,7 @@ class AnalysisTile extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppTheme.cardBackground,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -53,7 +53,7 @@ class AnalysisTile extends StatelessWidget {
                 Text(
                   title,
                   style: GoogleFonts.outfit(
-                    color: AppTheme.textSecondary,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -62,7 +62,7 @@ class AnalysisTile extends StatelessWidget {
                 Text(
                   value,
                   style: GoogleFonts.outfit(
-                    color: AppTheme.primaryNavy,
+                    color: Theme.of(context).colorScheme.onSurface,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -76,7 +76,7 @@ class AnalysisTile extends StatelessWidget {
               Text(
                 subtitle,
                 style: GoogleFonts.outfit(
-                  color: AppTheme.textSecondary,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontSize: 10,
                   fontWeight: FontWeight.w600,
                 ),

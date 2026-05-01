@@ -28,7 +28,7 @@ class ComparisonChartSection extends StatelessWidget {
     return Container(
       height: 320,
       decoration: BoxDecoration(
-        color: AppTheme.cardBackground,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -48,7 +48,7 @@ class ComparisonChartSection extends StatelessWidget {
                   children: [
                     Container(
                       decoration: BoxDecoration(
-                        color: AppTheme.inputFill,
+                        color: Theme.of(context).inputDecorationTheme.fillColor,
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: Row(
@@ -127,7 +127,7 @@ class ComparisonChartSection extends StatelessWidget {
           label,
           style: GoogleFonts.outfit(
             fontSize: 12,
-            color: AppTheme.textSecondary,
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
             fontWeight: FontWeight.w500,
           ),
         ),

@@ -31,7 +31,7 @@ class _BalanceCardState extends State<BalanceCard> {
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: AppTheme.cardBackground,
+        color: Theme.of(context).cardTheme.color,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -54,7 +54,7 @@ class _BalanceCardState extends State<BalanceCard> {
                       _isVisible
                           ? Icons.remove_red_eye_outlined
                           : Icons.visibility_off_outlined,
-                      color: AppTheme.primaryNavy,
+                      color: Theme.of(context).colorScheme.onSurface,
                       size: 20,
                     ),
                   ),
@@ -68,10 +68,10 @@ class _BalanceCardState extends State<BalanceCard> {
                       _isVisible
                           ? currencyFormat.format(bloc.totalBalance)
                           : "(¬_¬)", // The hidden face
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 32,
                         fontWeight: FontWeight.bold,
-                        color: AppTheme.primaryNavy,
+                        color: Theme.of(context).colorScheme.onSurface,
                         letterSpacing: -1,
                       ),
                     ),
@@ -174,21 +174,25 @@ class _BalanceCardState extends State<BalanceCard> {
                       ),
                       child: Row(
                         children: [
-                          const Expanded(
-                            child: Divider(color: AppTheme.dividerColor),
+                          Expanded(
+                            child: Divider(
+                              color: Theme.of(context).dividerColor,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 8),
                             child: Text(
                               "Last $days days",
                               style: GoogleFonts.outfit(
-                                color: AppTheme.textPrimary,
+                                color: Theme.of(context).colorScheme.onSurface,
                                 fontSize: 10,
                               ),
                             ),
                           ),
-                          const Expanded(
-                            child: Divider(color: AppTheme.dividerColor),
+                          Expanded(
+                            child: Divider(
+                              color: Theme.of(context).dividerColor,
+                            ),
                           ),
                         ],
                       ),
@@ -207,14 +211,17 @@ class _BalanceCardState extends State<BalanceCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 _buildStatItem(
+                  context,
                   "INCOMING",
                   "+${currencyFormat.format(bloc.totalIncoming)}",
                 ),
                 _buildStatItem(
+                  context,
                   "OUTGOING",
                   "-${currencyFormat.format(bloc.totalOutgoing)}",
                 ),
                 _buildStatItem(
+                  context,
                   "INVESTED",
                   currencyFormat.format(bloc.totalInvested),
                 ),
@@ -227,17 +234,20 @@ class _BalanceCardState extends State<BalanceCard> {
   }
 
   Widget _buildStatItem(
+    BuildContext context,
     String label,
     String value, {
-    Color labelColor = AppTheme.primaryNavy,
+    Color? labelColor,
   }) {
+    final theme = Theme.of(context);
+    final color = labelColor ?? theme.colorScheme.onSurface;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           _isVisible ? value : "*****",
           style: TextStyle(
-            color: labelColor,
+            color: color,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),

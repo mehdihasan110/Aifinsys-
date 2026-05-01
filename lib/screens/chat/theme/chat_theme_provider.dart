@@ -7,20 +7,21 @@ import 'chat_theme.dart';
 /// Persists theme selection using Hive stringBox via ChatThemeCommand.
 class ChatThemeProvider extends ChangeNotifier {
   ChatTheme _currentTheme = ChatThemes.ocean;
-
   ChatTheme get theme => _currentTheme;
 
-  ChatThemeProvider() {
-    _loadTheme();
+  ChatThemeProvider(bool isAppDarkMode) {
+    _loadTheme(isAppDarkMode);
   }
 
   /// Load saved theme from Hive stringBox via command
-  void _loadTheme() {
+  void _loadTheme(bool isAppDarkMode) {
     final savedId = ChatThemeCommand().getThemeId();
     if (savedId != null) {
       _currentTheme = ChatThemes.getById(savedId);
-      notifyListeners();
+    } else if (isAppDarkMode) {
+      _currentTheme = ChatThemes.midnight;
     }
+    notifyListeners();
   }
 
   /// Set and persist a new theme

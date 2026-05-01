@@ -54,23 +54,22 @@ class _StatsScreenState extends State<StatsScreen> {
     );
 
     return Scaffold(
-      backgroundColor: AppTheme.scaffoldBackground,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        // ... (existing AppBar)
         title: Text(
           "Statistics",
           style: GoogleFonts.outfit(
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
             fontWeight: FontWeight.bold,
           ),
         ),
         centerTitle: true,
-        backgroundColor: AppTheme.scaffoldBackground,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0,
         actions: [
           IconButton(
             icon: const Icon(Icons.download_rounded),
-            color: AppTheme.primaryNavy,
+            color: Theme.of(context).colorScheme.onSurface,
             onPressed: () {
               Navigator.push(
                 context,
