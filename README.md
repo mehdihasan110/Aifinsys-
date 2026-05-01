@@ -1,6 +1,6 @@
 # Clean Expense Manager
 
-![Cover](/assets/screen2.png)
+![Cover](/assets/logo.png)
 
 A beautiful, chat-based expense manager app built by **Mehdi Hasan**.
 
